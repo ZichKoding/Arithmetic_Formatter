@@ -1,0 +1,77 @@
+def arithmetic_arranger(problems, *solve):
+  '''*solve=True'''
+  if len(problems) >= 5:
+    quit('Error: Too many problems.')
+    
+  tops = []
+  bottoms = []
+  lines = []
+  solved = []
+
+  for probs in problems:
+    probs = ''.join(probs.split(' '))
+    for prob in probs:
+      # Addition Problems
+      if prob == '+': 
+        addprob = probs.split('+')
+
+        # Quit program if its not only digits.
+        if int(addprob[0]) is False:
+          quit("Error: Numbers must only contain digits.")
+        if int(addprob[1]) is False:
+          quit("Error: Numbers must only contain digits.")
+        # Quit program if too many digits.
+        if len(addprob[0]) >= 5:
+          quit("Error: Numbers cannot be more than four digits.")
+        if len(addprob[1]) >= 5:
+          quit("Error: Numbers cannot be more than four digits.")
+
+        tops.append(((len(probs) - len(addprob[0])) * ' ' + addprob[0]))
+        bottoms.append(('+' + (len(probs) - len(addprob[1]) - 1) * ' ' + addprob[1]))
+        lines.append(('-' * len(probs)))
+        # Solving addition problem.
+        add = str(int(addprob[0]) + int(addprob[1]))
+        solved.append(((len(probs) - len(add)) * ' ' + add))
+
+
+      # Subtraction Problems
+      if prob == '-':
+        subprob = probs.split('-')
+
+        # Quit program if its not only digits
+        if int(subprob[0]) is False:
+          quit("Error: Numbers must only contain digits.")
+        if int(subprob[1]) is False:
+          quit("Error: Numbers must only contain digits.")
+        # Quit program if too many digits
+        if len(subprob[0]) >= 5:
+          quit("Error: Numbers cannot be more than four digits.")
+        if len(subprob[1]) >= 5:
+          quit("Error: Numbers cannot be more than four digits.")
+        
+        tops.append(((len(probs) - len(subprob[0])) * ' ' + subprob[0]))
+        bottoms.append(('-' + (len(probs) - len(subprob[1]) - 1) * ' ' + subprob[1]))
+        lines.append('-' * len(probs))
+        # Solving subtraction problem.
+        sub = str(int(subprob[0]) - int(subprob[1]))
+        solved.append(((len(probs) - len(sub)) * ' ' + sub))
+
+
+      # Quit program if using incorrect opperator.
+      if prob == '/':
+        quit("Error: Operator must be '+' or '-'.")
+      if prob == '*':
+        quit("Error: Operator must be '+' or '-'.")
+      if prob == '**':
+        quit("Error: Operator must be '+' or '-'.")
+
+    if solve:
+        arranged_problems = str(tops)[1:-1].replace(",", "").replace("'", "\t") + '\n' + str(bottoms)[1:-1].replace(",", "").replace("'", "\t") + '\n' + str(lines)[1:-1].replace(",", "").replace("'", "\t") + '\n' + str(solved)[1:-1].replace(",", "").replace("'", "\t")
+        
+        arranged_problems = ''.join(arranged_problems)
+    else:
+        arranged_problems = str(tops)[1:-1].replace(",", "").replace("'", "\t") + '\n' + str(bottoms)[1:-1].replace(",", "").replace("'", "\t") + '\n' + str(lines)[1:-1].replace(",", "").replace("'", "\t")
+
+        arranged_problems = ''.join(arranged_problems)
+
+  return arranged_problems
