@@ -1,0 +1,22 @@
+<Arithmetic>
+
+
+	BoxLayout
+		size: root.height, root.width
+		orientation: 'vertical'
+
+		Label:
+			text: ''
+			size_hint: (root.width, 0.3)
+			font_size: 32
+			halign: 'center'
+
+		TextInput:
+			multiline: False
+			size_hint: (root.width, 0.2)
+
+		Button:
+			text: "Arrange"
+			on_press: root.vert_arrange()
+			size_hint: (1.4, 0.2)
+			font_size: 32
